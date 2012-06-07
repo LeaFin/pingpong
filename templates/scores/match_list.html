@@ -1,0 +1,11 @@
+<h1>Pingpongmatches: {{match.datum}} </h1>
+
+{% if match_list %}
+<ul>
+	{% for match in match_list %}
+	<li><a href="/scores/detail/{{ match.id }}/">{{ match.gewinner }} - {{match.verlierer}}</a></li>
+	{% endfor %}
+</ul>
+{% else %}
+    <p>Keine Spiele verfügbar.</p>
+{% endif %}

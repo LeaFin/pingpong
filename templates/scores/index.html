@@ -1,0 +1,33 @@
+<h1>Pingpongmatches</h1>
+
+<h2>nach Datum:</h2>
+
+{% if latest_matches %}
+<ul>
+	{% for match in latest_matches %}
+	{% ifchanged match.datum %}	
+	<li><a href="/scores/date/{{match.datum|date:"Y-m-d"}}/">{{ match.datum }}</a></li>
+	{% endifchanged %}
+	{% endfor %}
+</ul>
+{% else %}
+    <p>Keine Spiele verfügbar.</p>
+{% endif %}
+
+<h2>nach Spieler:</h2>
+{% if spieler %}
+<ul>
+	{% for mitarbeiter in spieler %}
+	<li><a href='/scores/name/{{mitarbeiter.vorname}}/'>{{ mitarbeiter.vorname }}</a></li>
+
+{% endfor %}
+</ul>
+{% else %}
+    <p>Keine Spiele verfügbar.</p>
+
+{% endif %}
+
+<form action = "/scores/new_entry/" method = "post">
+    {% csrf_token %}
+    <input type = "submit" value = "Resultat hinzufügen"/>
+</form>	
